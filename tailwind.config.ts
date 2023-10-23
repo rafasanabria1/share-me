@@ -2,12 +2,27 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './const.ts'
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        github: '#333333',
+        facebook: '#3b5998',
+        x: '#000000',
+        instagramPink: '#a62eb9',
+        instagramYellow: '#eea34c',
+        linkedin: '#0077B5',
+        twitch: '#6441A4',
+        kick: '#53FC18',
+        youtube: '#FF0000',
+        telegram: '#0088cc',
+        email: '#D44638'
+      }
+    }
   },
   plugins: []
 }
