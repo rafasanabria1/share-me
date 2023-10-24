@@ -1,7 +1,8 @@
 import { IconArrowRight } from '@tabler/icons-react'
 import { buttonTypes } from '../const'
+import { type SocialLinkType } from '@types'
 
-export default function SocialButton ({ href, type, className }: { href: string, type: keyof typeof buttonTypes, className?: string }) {
+export default function SocialButton ({ href, type, className }: { href: string, type: SocialLinkType, className?: string }) {
   const buttonType = buttonTypes[type]
   const { icon: Icon } = buttonType
   return (
