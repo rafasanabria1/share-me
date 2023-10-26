@@ -1,7 +1,8 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type SocialLink } from '../types'
 import SocialButton from './SocialButton'
-
-export default function PublicView ({
+import { cookies } from 'next/headers'
+export default async function PublicView ({
   username,
   bio,
   avatarUrl,
@@ -12,6 +13,11 @@ export default function PublicView ({
   avatarUrl: string
   socialLinks: SocialLink[]
 }) {
+  const supabase = createServerComponentClient({ cookies })
+
+  const { data } = await supabase.from('users').select('*')
+  console.log(data)
+
   return (
     <div className="flex flex-col min-h-screen items-center w-full py-10">
       <section className="flex flex-col items-center max-w-2xl px-2 mx-auto">

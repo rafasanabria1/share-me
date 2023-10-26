@@ -1,10 +1,10 @@
-import { IconBrandFacebook, IconBrandGithub, IconBrandGmail, IconBrandInstagram, IconBrandKick, IconBrandLinkedin, IconBrandTelegram, IconBrandTwitch, IconBrandX, IconBrandYoutube } from '@tabler/icons-react'
+import { IconBrandFacebook, IconBrandGithub, IconBrandGoogle, IconBrandInstagram, IconBrandKick, IconBrandLinkedin, IconBrandTelegram, IconBrandTwitch, IconBrandX, IconBrandYoutube } from '@tabler/icons-react'
 
 export const buttonTypes = {
-  GMAIL: {
-    icon: IconBrandGmail,
-    text: 'Gmail',
-    backgroundColorClass: 'bg-email',
+  GOOGLE: {
+    icon: IconBrandGoogle,
+    text: 'Google',
+    backgroundColorClass: 'bg-google',
     colorClass: 'text-white'
   },
   GITHUB: {
@@ -60,5 +60,24 @@ export const buttonTypes = {
     text: 'Telegram',
     backgroundColorClass: 'bg-telegram',
     colorClass: 'text-white'
+  }
+}
+
+export const paths = {
+  DASHBOARD: '/dashboard',
+  HOME: '/',
+  LOGIN: '/login',
+  LOGIN_CALLBACK: '/auth/callback',
+  PUBLIC_VIEW: '/public-view'
+}
+
+export const loginProviders = {
+  GITHUB: {
+    id: 'github',
+    name: 'GitHub'
+  },
+  GOOGLE: {
+    id: 'google',
+    name: 'Google'
   }
 }

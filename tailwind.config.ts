@@ -20,7 +20,7 @@ const config: Config = {
         kick: '#53FC18',
         youtube: '#FF0000',
         telegram: '#0088cc',
-        email: '#D44638'
+        google: '#D44638'
       }
     }
   },

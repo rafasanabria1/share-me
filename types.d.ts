@@ -6,7 +6,7 @@ export interface ButtonType {
 }
 
 enum SocialLinkType {
-  gmail = 'GMAIL',
+  google = 'GOOGLE',
   github = 'GITHUB',
   facebook = 'FACEBOOK',
   x = 'X',

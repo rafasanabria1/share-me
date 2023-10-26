@@ -8,7 +8,7 @@ export default function Home () {
     socialLinks: [
       {
         id: '1',
-        type: 'GMAIL',
+        type: 'GOOGLE',
         link: 'https://www.github.com/rafasanabria1'
       },
       {
