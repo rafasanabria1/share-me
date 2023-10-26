@@ -1,11 +1,6 @@
-export interface ButtonType {
-  icon: any
-  text: string
-  backgroundColorClass: string
-  colorClass: string
-}
+import { type TablerIconsProps } from '@tabler/icons-react'
 
-enum SocialLinkType {
+export const Platform = {
   google = 'GOOGLE',
   github = 'GITHUB',
   facebook = 'FACEBOOK',
@@ -15,10 +10,30 @@ enum SocialLinkType {
   twitch = 'TWITCH',
   kick = 'KICK',
   youtube = 'YOUTUBE',
-  telegram = 'TELEGRAM',
+  telegram = 'TELEGRAM'
 }
-export interface SocialLink {
+
+export interface Link {
   id: string
-  type: SocialLinkType
+  platform: keyof typeof Platform
   link: string
+  order: number
+}
+
+export interface User {
+  id: string
+  user_name: string
+  full_name?: string
+  avatar_url?: string
+  bio?: string
+  links: Link[]
+  created_at?: string
+  updated_at?: string
+}
+
+export interface PlatformInfo {
+  icon: (props: TablerIconsProps) => JSX.Element
+  text: string
+  backgroundColorClass: string
+  colorClass: string
 }

@@ -3,7 +3,7 @@
 import { paths } from '@const'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-export default function SignOutButton () {
+export default function SignOutButton ({ children, className }: { children?: React.ReactNode, className?: string }) {
   const router = useRouter()
 
   const handleSignOut = () => {
@@ -15,8 +15,10 @@ export default function SignOutButton () {
   }
 
   return (
-        <button onClick={handleSignOut} className='flex items-center gap-2 px-8 py-2 border rounded-lg justify-center bg-zinc-600 text-white'>
-            Cerrar sesión
-        </button>
+    <button onClick={handleSignOut} className={`flex items-center gap-2 px-8 py-2 border rounded-lg justify-center bg-zinc-600 text-white ${className}`}>
+        {
+            children ?? 'Sign Out'
+        }
+    </button>
   )
 }

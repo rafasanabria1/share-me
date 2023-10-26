@@ -1,61 +1,62 @@
 import { IconBrandFacebook, IconBrandGithub, IconBrandGoogle, IconBrandInstagram, IconBrandKick, IconBrandLinkedin, IconBrandTelegram, IconBrandTwitch, IconBrandX, IconBrandYoutube } from '@tabler/icons-react'
+import { type User } from '@types'
 
 export const buttonTypes = {
-  GOOGLE: {
+  google: {
     icon: IconBrandGoogle,
     text: 'Google',
     backgroundColorClass: 'bg-google',
     colorClass: 'text-white'
   },
-  GITHUB: {
+  github: {
     icon: IconBrandGithub,
     text: 'Github',
     backgroundColorClass: 'bg-github',
     colorClass: 'text-white'
   },
-  FACEBOOK: {
+  facebook: {
     icon: IconBrandFacebook,
     text: 'Facebook',
     backgroundColorClass: 'bg-facebook',
     colorClass: 'text-white'
   },
-  X: {
+  x: {
     icon: IconBrandX,
     text: 'X',
     backgroundColorClass: 'bg-x',
     colorClass: 'text-white'
   },
-  INSTAGRAM: {
+  instagram: {
     icon: IconBrandInstagram,
     text: 'Instagram',
     backgroundColorClass: 'bg-gradient-to-tr to-instagramPink from-instagramYellow',
     colorClass: 'text-white'
   },
-  LINKEDIN: {
+  linkedin: {
     icon: IconBrandLinkedin,
     text: 'LinkedIn',
     backgroundColorClass: 'bg-linkedin',
     colorClass: 'text-white'
   },
-  TWITCH: {
+  twitch: {
     icon: IconBrandTwitch,
     text: 'Twitch',
     backgroundColorClass: 'bg-twitch',
     colorClass: 'text-white'
   },
-  KICK: {
+  kick: {
     icon: IconBrandKick,
     text: 'Kick',
     backgroundColorClass: 'bg-kick',
     colorClass: 'text-black'
   },
-  YOUTUBE: {
+  youtube: {
     icon: IconBrandYoutube,
     text: 'Youtube',
     backgroundColorClass: 'bg-youtube',
     colorClass: 'text-white'
   },
-  TELEGRAM: {
+  telegram: {
     icon: IconBrandTelegram,
     text: 'Telegram',
     backgroundColorClass: 'bg-telegram',
@@ -80,4 +81,32 @@ export const loginProviders = {
     id: 'google',
     name: 'Google'
   }
+}
+
+export const exampleUser: User = {
+  id: 'sasdfasdf',
+  user_name: 'johndoe',
+  full_name: 'John Doe',
+  avatar_url: 'https://avatars.githubusercontent.com/u/68209766?v=4',
+  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet.',
+  links: [
+    {
+      id: 'asdfasdfasdf',
+      platform: 'github',
+      link: 'https://www.github.com/rafasanabria1',
+      order: 1
+    },
+    {
+      id: 'asdfasdfasdf2',
+      platform: 'x',
+      link: 'https://twitter.com/rafasanabria1',
+      order: 2
+    },
+    {
+      id: 'asdfasdfasdf3',
+      platform: 'linkedin',
+      link: 'https://www.linkedin.com/in/rafasanabria1/',
+      order: 3
+    }
+  ]
 }

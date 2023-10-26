@@ -1,34 +1,37 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { type SocialLink } from '../types'
-import SocialButton from './SocialButton'
-import { cookies } from 'next/headers'
-export default async function PublicView ({
-  username,
-  bio,
-  avatarUrl,
-  socialLinks
-}: {
-  username: string
-  bio: string
-  avatarUrl: string
-  socialLinks: SocialLink[]
-}) {
-  const supabase = createServerComponentClient({ cookies })
-
-  const { data } = await supabase.from('users').select('*')
-  console.log(data)
-
+import { type User } from '@types'
+import SocialButton from '@components/SocialButton'
+import { IconPhotoCancel } from '@tabler/icons-react'
+export default async function PublicView ({ user }: { user?: User }) {
   return (
-    <div className="flex flex-col min-h-screen items-center w-full py-10">
-      <section className="flex flex-col items-center max-w-2xl px-2 mx-auto">
-        <img className="w-32 h-32 mb-3 border rounded-full shadow-lg" src={avatarUrl} alt={username} />
-        <h1 className="text-5xl font-bold font-mono leading-none tracking-tight text-center">{username}</h1>
-        <p className='text-lg font-normal text-center mt-6 text-md'>{bio}</p>
-      </section>
-      <section className='flex flex-col gap-4 w-full max-w-lg mt-20 px-2 mx-auto'>
+    <div className="flex flex-col items-center justify-center w-full">
+      <section className="flex flex-col items-center max-w-2xl px-2 mx-auto md:px-0">
+        <picture className='w-32 h-32 mb-3 border rounded-full shadow-lg flex items-center justify-center'>
+            {
+                user?.avatar_url !== undefined
+                  ? <img className="w-32 h-32 rounded-full shadow-lg" src={user.avatar_url} alt={user.user_name} />
+                  : <IconPhotoCancel className='text-zinc-300' size={48} />
+            }
+        </picture>
         {
-            socialLinks.map((socialLink) => (
-                <SocialButton key={socialLink.id} type={socialLink.type} href={socialLink.link} />
+            user?.user_name !== undefined
+              ? <h1 className="text-5xl font-bold font-mono leading-none tracking-tight text-center mb-4">{user.user_name}</h1>
+              : <div className="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
+        }
+        {
+            user?.bio !== undefined
+              ? <p className='text-lg font-normal text-center text-md'>{user.bio}</p>
+              : <div className='w-full'>
+                    <div className="h-2 bg-gray-200 rounded-full max-w-[480px] mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+                    <div className="h-2 bg-gray-200 rounded-full max-w-[440px] mb-2.5"></div>
+                </div>
+        }
+
+      </section>
+      <section className='flex flex-col gap-4 w-full max-w-lg mt-20 px-2 mx-auto overflow-y-auto md:px-0'>
+        {
+            user?.links?.map((link) => (
+                <SocialButton key={link.id} platform={link.platform} href={link.link} />
             ))
         }
       </section>
