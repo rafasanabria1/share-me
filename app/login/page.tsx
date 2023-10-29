@@ -8,7 +8,7 @@ export default function Login () {
             <section className="flex flex-col gap-6 w-full md:w-1/2 p-6 border border-zinc-400 rounded-3xl shadow-lg">
                 <h1 className='font-extrabold text-6xl text-center'>Share me!</h1>
                 <p className='text-center'>Manage and share your social links in just seconds!</p>
-                <div className='grid grid-cols-2 md:grid-cols-5 place-items-center'>
+                <div className='grid grid-cols-2 sm:grid-cols-5 place-items-center'>
                     {
                         Object.entries(buttonTypes).map(([key, value]) => {
                           const { icon: Icon, backgroundColorClass, colorClass } = value

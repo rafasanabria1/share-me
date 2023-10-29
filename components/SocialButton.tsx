@@ -1,5 +1,5 @@
 import { IconArrowRight } from '@tabler/icons-react'
-import { buttonTypes } from '../const'
+import { buttonTypes } from '@const'
 import { type PlatformInfo, type Platform } from '@types'
 
 export default function SocialButton ({ href, platform, className }: { href: string, platform: keyof typeof Platform, className?: string }) {
