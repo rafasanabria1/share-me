@@ -3,7 +3,7 @@
 import { IconEqual, IconLogout, IconPlus, IconTrash } from '@tabler/icons-react'
 import SignOutButton from './signout-button'
 
-export default function FormDashboard () {
+export default function DashBoardLinks () {
   return (
       <div className="flex flex-col w-full">
         <header className="w-full flex justify-end">

@@ -26,7 +26,6 @@ export interface User {
   full_name?: string
   avatar_url?: string
   bio?: string
-  links: Link[]
   created_at?: string
   updated_at?: string
 }

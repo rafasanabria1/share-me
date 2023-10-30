@@ -1,4 +1,4 @@
-import PublicView from '@components/PublicView'
+import PublicView from '@components/public-view'
 import { exampleUser } from '@const'
 export default function Home () {
   return (

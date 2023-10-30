@@ -1,7 +1,8 @@
-import { type User } from '@types'
 import SocialButton from '@components/SocialButton'
 import { IconPhotoCancel } from '@tabler/icons-react'
-export default async function PublicView ({ user }: { user?: User }) {
+import { type Tables } from '../lib/database'
+
+export default async function PublicView ({ user }: { user?: Tables<'users'> }) {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <section className="flex flex-col items-center max-w-2xl px-2 mx-auto md:px-0">
