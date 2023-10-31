@@ -15,8 +15,8 @@ export async function middleware (req: NextRequest) {
     return NextResponse.redirect(new URL(paths.LOGIN, req.url))
   }
 
-  if (session !== null && req.nextUrl.pathname !== paths.DASHBOARD) {
-    return NextResponse.redirect(new URL(paths.DASHBOARD, req.url))
+  if (session !== null && !req.nextUrl.pathname.startsWith(paths.DASHBOARD)) {
+    return NextResponse.redirect(new URL(paths.DASHBOARD_LINKS, req.url))
   }
 
   return res

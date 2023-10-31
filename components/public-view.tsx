@@ -7,12 +7,12 @@ export default async function PublicView ({ user, links, view = 'screen' }: { us
       <section className="flex flex-col items-center max-w-2xl px-2 mx-auto md:px-0">
         {
             user?.avatar_url !== null
-              ? <picture className='avatar ring ring-primary rounded-full'>
+              ? <picture className='avatar ring ring-primary rounded-full mb-4'>
                     <div className="w-64 rounded-full">
                         <img src={user?.avatar_url} alt={user?.user_name} />
                     </div>
               </picture>
-              : <div className="avatar placeholder">
+              : <div className="avatar placeholder mb-4">
                     <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
                     <span className="text-3xl">{user?.user_name.toUpperCase().substring(0, 1)}</span>
                     </div>
@@ -34,7 +34,7 @@ export default async function PublicView ({ user, links, view = 'screen' }: { us
         }
 
       </section>
-      <section className='flex flex-col gap-4 w-full max-w-lg mt-20 px-2 mx-auto overflow-y-auto md:px-0'>
+      <section className='flex flex-col gap-4 w-full max-w-lg mt-20 px-2 mx-auto overflow-y-auto'>
         {
             links?.map((link) => (
                 <SocialButton key={link.id} platform={link.platform} href={link.link} />

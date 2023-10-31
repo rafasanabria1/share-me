@@ -5,6 +5,7 @@ export type Tables<T extends keyof Database['public']['Tables']> = Database['pub
 export type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T]
 
 export interface PlatformInfo {
+  id: Enums<'platform'>
   icon: (props: TablerIconsProps) => JSX.Element
   name: string
   backgroundColorClass: string
