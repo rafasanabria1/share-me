@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import DashboardLinks from '@components/dashboard-links'
+import DashboardLinks from '@/dashboard/links/dashboard-links'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '../../../lib/database'
 

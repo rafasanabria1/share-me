@@ -3,7 +3,7 @@
 // import { useState } from 'react'
 import { type Tables } from '@types'
 import { IconEqual, IconLogout, IconPlus, IconTrash, IconUser } from '@tabler/icons-react'
-import SignOutButton from './signout-button'
+import SignOutButton from '../../../components/signout-button'
 import { paths, platforms } from '@const'
 import Link from 'next/link'
 

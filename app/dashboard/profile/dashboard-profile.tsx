@@ -3,7 +3,7 @@ import { paths } from '@const'
 import { IconLink, IconLogout } from '@tabler/icons-react'
 import { type Tables } from '@types'
 import Link from 'next/link'
-import SignOutButton from './signout-button'
+import SignOutButton from '../../../components/signout-button'
 
 export default function DashBoardProfile ({ user }: { user: Tables<'users'> | null }) {
   return (

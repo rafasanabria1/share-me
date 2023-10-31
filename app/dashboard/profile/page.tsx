@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { type Database } from '@database'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import DashBoardProfile from '@components/dashboard-profile'
+import DashBoardProfile from '@/dashboard/profile/dashboard-profile'
 
 export default async function Profile () {
   const supabase = createServerComponentClient<Database>({ cookies })

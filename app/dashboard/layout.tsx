@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import PublicView from '@components/public-view'
+import PublicView from '@/public-view/public-view'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
 
@@ -15,7 +15,8 @@ export default async function DashboardLayout ({
   const { data: userInfo } = await supabase.from('users').select().eq('id', user.id).single()
   const { data: links } = await supabase.from('links').select().eq('user_id', user.id).order('order', { ascending: true })
 
-  console.log(links)
+  console.log({ userInfo, links })
+
   return (
     <main className="min-h-screen grid grid-cols1 md:grid-cols-2 gap-8 p-8 w-full max-w-screen-xl mx-auto">
         <section className="hidden md:flex my-auto">
