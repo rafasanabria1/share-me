@@ -15,7 +15,7 @@ export default function SignOutButton ({ children, className }: { children?: Rea
   }
 
   return (
-    <button onClick={handleSignOut} className={`flex items-center gap-2 px-8 py-2 border rounded-lg justify-center bg-zinc-600 text-white ${className}`}>
+    <button onClick={handleSignOut} className={`flex items-center gap-2 justify-center ${className}`}>
         {
             children ?? 'Sign Out'
         }

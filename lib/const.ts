@@ -1,112 +1,85 @@
 import { IconBrandFacebook, IconBrandGithub, IconBrandGoogle, IconBrandInstagram, IconBrandKick, IconBrandLinkedin, IconBrandTelegram, IconBrandTwitch, IconBrandX, IconBrandYoutube } from '@tabler/icons-react'
-import { type User } from '@types'
+import { type PlatformInfo, type Enums, type Tables } from '@types'
 
-export const buttonTypes = {
+export const paths = {
+  HOME: '/',
+  LOGIN: '/login',
+  LOGIN_CALLBACK: '/auth/callback',
+  PUBLIC_VIEW: '/public-view',
+  DASHBOARD: '/dashboard'
+}
+
+export const platforms: Record<Enums<'platform'>, PlatformInfo> = {
   google: {
     icon: IconBrandGoogle,
-    text: 'Google',
+    name: 'Google',
     backgroundColorClass: 'bg-google',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300',
+    loginProviderId: 'google'
   },
   github: {
     icon: IconBrandGithub,
-    text: 'Github',
+    name: 'Github',
     backgroundColorClass: 'bg-github',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300',
+    loginProviderId: 'github'
   },
   facebook: {
     icon: IconBrandFacebook,
-    text: 'Facebook',
+    name: 'Facebook',
     backgroundColorClass: 'bg-facebook',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   x: {
     icon: IconBrandX,
-    text: 'X',
+    name: 'X',
     backgroundColorClass: 'bg-x',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   instagram: {
     icon: IconBrandInstagram,
-    text: 'Instagram',
+    name: 'Instagram',
     backgroundColorClass: 'bg-gradient-to-tr to-instagramPink from-instagramYellow',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   linkedin: {
     icon: IconBrandLinkedin,
-    text: 'LinkedIn',
+    name: 'LinkedIn',
     backgroundColorClass: 'bg-linkedin',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   twitch: {
     icon: IconBrandTwitch,
-    text: 'Twitch',
+    name: 'Twitch',
     backgroundColorClass: 'bg-twitch',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   kick: {
     icon: IconBrandKick,
-    text: 'Kick',
+    name: 'Kick',
     backgroundColorClass: 'bg-kick',
     colorClass: 'text-black'
   },
   youtube: {
     icon: IconBrandYoutube,
-    text: 'Youtube',
+    name: 'Youtube',
     backgroundColorClass: 'bg-youtube',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   },
   telegram: {
     icon: IconBrandTelegram,
-    text: 'Telegram',
+    name: 'Telegram',
     backgroundColorClass: 'bg-telegram',
-    colorClass: 'text-white'
+    colorClass: 'text-slate-300'
   }
 }
 
-export const paths = {
-  DASHBOARD: '/dashboard',
-  HOME: '/',
-  LOGIN: '/login',
-  LOGIN_CALLBACK: '/auth/callback',
-  PUBLIC_VIEW: '/public-view'
-}
-
-export const loginProviders = {
-  GITHUB: {
-    id: 'github',
-    name: 'GitHub'
-  },
-  GOOGLE: {
-    id: 'google',
-    name: 'Google'
-  }
-}
-
-export const exampleUser: User = {
+export const exampleUser: Tables<'users'> = {
   id: 'sasdfasdf',
   user_name: 'johndoe',
   full_name: 'John Doe',
-  avatar_url: 'https://avatars.githubusercontent.com/u/68209766?v=4',
   bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet.',
-  links: [
-    {
-      id: 'asdfasdfasdf',
-      platform: 'github',
-      link: 'https://www.github.com/rafasanabria1',
-      order: 1
-    },
-    {
-      id: 'asdfasdfasdf2',
-      platform: 'x',
-      link: 'https://twitter.com/rafasanabria1',
-      order: 2
-    },
-    {
-      id: 'asdfasdfasdf3',
-      platform: 'linkedin',
-      link: 'https://www.linkedin.com/in/rafasanabria1/',
-      order: 3
-    }
-  ]
+  avatar_url: 'https://avatars.githubusercontent.com/u/263385',
+  created_at: new Date().toString(),
+  updated_at: new Date().toString()
 }

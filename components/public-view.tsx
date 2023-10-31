@@ -1,18 +1,23 @@
-import SocialButton from '@components/SocialButton'
-import { IconPhotoCancel } from '@tabler/icons-react'
-import { type Tables } from '../lib/database'
+import SocialButton from '@components/social-button'
+import { type Tables } from '@types'
 
-export default async function PublicView ({ user }: { user?: Tables<'users'> }) {
+export default async function PublicView ({ user, links, view = 'screen' }: { user?: Tables<'users'> | null, links?: Array<Tables<'links'>> | null, view?: 'mobile' | 'screen' }) {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <section className="flex flex-col items-center max-w-2xl px-2 mx-auto md:px-0">
-        <picture className='w-32 h-32 mb-3 border rounded-full shadow-lg flex items-center justify-center'>
-            {
-                user?.avatar_url !== undefined
-                  ? <img className="w-32 h-32 rounded-full shadow-lg" src={user.avatar_url} alt={user.user_name} />
-                  : <IconPhotoCancel className='text-zinc-300' size={48} />
-            }
-        </picture>
+        {
+            user?.avatar_url !== null
+              ? <picture className='avatar ring ring-primary rounded-full'>
+                    <div className="w-64 rounded-full">
+                        <img src={user?.avatar_url} alt={user?.user_name} />
+                    </div>
+              </picture>
+              : <div className="avatar placeholder">
+                    <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
+                    <span className="text-3xl">{user?.user_name.toUpperCase().substring(0, 1)}</span>
+                    </div>
+                </div>
+        }
         {
             user?.user_name !== undefined
               ? <h1 className="text-5xl font-bold font-mono leading-none tracking-tight text-center mb-4">{user.user_name}</h1>
@@ -31,7 +36,7 @@ export default async function PublicView ({ user }: { user?: Tables<'users'> }) 
       </section>
       <section className='flex flex-col gap-4 w-full max-w-lg mt-20 px-2 mx-auto overflow-y-auto md:px-0'>
         {
-            user?.links?.map((link) => (
+            links?.map((link) => (
                 <SocialButton key={link.id} platform={link.platform} href={link.link} />
             ))
         }
