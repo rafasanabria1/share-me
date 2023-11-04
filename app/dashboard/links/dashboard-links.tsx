@@ -1,15 +1,67 @@
 'use client'
 
-// import { useState } from 'react'
-import { type Tables } from '@types'
-import { IconEqual, IconLogout, IconPlus, IconTrash, IconUser } from '@tabler/icons-react'
-import SignOutButton from '../../../components/signout-button'
-import { paths, platforms } from '@const'
+import { useEffect, useState } from 'react'
+import { type Tables, type TablesUpdate } from '@types'
+import { IconLogout, IconPlus, IconUser } from '@tabler/icons-react'
+import SignOutButton from '@components/signout-button'
+import { paths } from '@const'
 import Link from 'next/link'
+import DashboardLinkDetail from './dashboard-link-detail'
 
-export default function DashBoardLinks ({ links }: { links: Array<Tables<'links'>> | null }) {
-  // const [modifiedLinks, setModifiedLinks] = useState<Array<Tables<'links'>> | null>(links)
-  // console.log({ modifiedLinks })
+export default function DashBoardLinks (
+  {
+    links,
+    user
+  }: {
+    links: Array<Tables<'links'>> | null
+    user: Tables<'users'> | null
+  }) {
+  const [saving, setSaving] = useState(false)
+  const [modifiedLinks, setModifiedLinks] = useState<Array<TablesUpdate<'links'>> | null>([])
+
+  useEffect(() => {
+    setModifiedLinks(links)
+  }, [links])
+
+  const addLink = () => {
+    if (user === null) throw new Error('User not found')
+
+    const previousLinks = modifiedLinks ?? []
+    setModifiedLinks([...previousLinks, {
+      id: crypto.randomUUID(),
+      platform: 'github',
+      link: '',
+      order: previousLinks.length + 1,
+      user_id: user.id
+    }])
+  }
+
+  const removeLink = (id: Tables<'links'>['id']) => {
+    const previousLinks = modifiedLinks ?? []
+    const newLinks = previousLinks.filter(link => link.id !== id)
+    setModifiedLinks(newLinks)
+  }
+
+  const updateLink = (link: TablesUpdate<'links'>) => {
+    setModifiedLinks((previousLinks) => {
+      if (previousLinks === null) {
+        return null
+      }
+      return previousLinks.map(previousLink => {
+        if (previousLink.id === link.id) {
+          return link
+        }
+        return previousLink
+      })
+    })
+  }
+
+  const handleSaveLinks = () => {
+    setSaving(true)
+    console.log({ modifiedLinks })
+    setSaving(false)
+  }
+
   return (
       <div className="flex flex-col w-full gap-8">
         <header className="w-full flex justify-between">
@@ -25,53 +77,28 @@ export default function DashBoardLinks ({ links }: { links: Array<Tables<'links'
                 <h1 className='font-bold text-2xl'>Customize your links</h1>
                 <p className='text-sm mt-2'>Add/edit/remove links below and then share all your profiles!</p>
             </div>
-            <button className='btn btn-outline btn-sm w-full mt-4'>
+            <button className='btn btn-outline btn-sm w-full mt-4' onClick={addLink}>
                 <span>Add new link</span>
                 <IconPlus size={20} />
             </button>
             <section className='flex flex-col gap-4'>
                 {
-                    links?.map(link => {
-                      return (
-                    <div key={link.id} className='flex flex-col gap-1 rounded-lg p-4 border'>
-                        <header className='flex justify-between w-full items-center'>
-                            <div className='flex gap-2 items-center text-slate-100'>
-                                <IconEqual size={18} />
-                                <span>Link #{link.order}</span>
-                            </div>
-                            <IconTrash size={18} className='text-error'/>
-                        </header>
-                        <main className='flex flex-col gap-2'>
-                            <div className='form-control w-full'>
-                                <label htmlFor="" className='label p-1'>
-                                    <span className='label-text'>Platform</span>
-                                </label>
-                                <select id="platform" className="select select-bordered select-sm w-full" value={link.platform}>
-                                    <option value="">Select a platform</option>
-                                    {
-                                        Object.values(platforms).map(platform => {
-                                          return (
-                                                <option key={`${link.id}-${platform.id}`} value={platform.id}>{platform.name}</option>
-                                          )
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            <div className='form-control w-full'>
-                                <label className="label p-1">
-                                    <span className="label-text">Link</span>
-                                </label>
-                                <input type="text" className="input input-bordered input-sm " placeholder="https://www.github.com/johndoe" value={link.link} />
-                            </div>
-                        </main>
-                    </div>
-                      )
+                    modifiedLinks?.map((link, index) => {
+                      return <DashboardLinkDetail key={link.id} link={link} index={index} removeLink={removeLink} updateLink={updateLink} />
                     })
-                    }
+                }
             </section>
         </main>
         <footer>
-            <button className="btn btn-success w-full ">Save</button>
+            <button className="btn btn-success w-full" onClick={handleSaveLinks} disabled={saving}>{
+            saving
+              ? <>
+                    <span>Saving</span>
+                    <span className='animate-spin'>
+                        <IconPlus size={20} />
+                    </span>
+                </>
+              : 'Save'}</button>
         </footer>
     </div>
   )
