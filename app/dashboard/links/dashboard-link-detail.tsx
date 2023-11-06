@@ -39,7 +39,7 @@ export default function DashboardLinkDetail (
                 <span>Link #{index + 1}</span>
             </div>
             { /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */ }
-            <button onClick={() => { removeLink(link.id!) }}>
+            <button onClick={() => { removeLink(link.id!) }} type='button'>
                 <IconTrash size={18} className='text-error'/>
             </button>
         </header>
@@ -48,7 +48,7 @@ export default function DashboardLinkDetail (
                 <label htmlFor="" className='label p-1'>
                     <span className='label-text'>Platform</span>
                 </label>
-                <select id="platform" className="select select-bordered select-sm w-full" value={link.platform} onChange={handleChangePlatform}>
+                <select className="select select-bordered select-sm w-full" value={link.platform} onChange={handleChangePlatform}>
                     <option value="">Select a platform</option>
                     {
                         Object.values(platforms).map(platform => {
