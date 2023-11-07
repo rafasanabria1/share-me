@@ -48,15 +48,15 @@ export default function DashboardLinkDetail (
             </div>
             { /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */ }
             <button onClick={() => { removeLink(link.id!) }} type='button'>
-                <IconTrash size={18} className='text-error'/>
+                <IconTrash size={18} className='text-secondary'/>
             </button>
         </header>
         <main className='flex flex-col gap-2'>
             <div className='form-control w-full'>
-                <label htmlFor="" className='label p-1'>
+                <label htmlFor={`platform-${link.id}`} className='label p-1'>
                     <span className='label-text'>Platform</span>
                 </label>
-                <select className="select select-bordered select-sm w-full" value={link.platform} onChange={handleChangePlatform}>
+                <select id={`platform-${link.id}`} className="select select-bordered select-sm w-full" value={link.platform} onChange={handleChangePlatform}>
                     <option value="">Select a platform</option>
                     {
                         Object.values(platforms).map(platform => {
@@ -68,10 +68,10 @@ export default function DashboardLinkDetail (
                 </select>
             </div>
             <div className='form-control w-full'>
-                <label className="label p-1">
+                <label htmlFor={`link-${link.id}`} className="label p-1">
                     <span className="label-text">Link</span>
                 </label>
-                <input type="text" className={`input input-bordered input-sm placeholder-opacity-5 ${error && 'input-error'}`} placeholder="https://www.github.com/johndoe" value={link.link} onChange={handleChangeLink} />
+                <input id={`link-${link.id}`} type="text" className={`input input-bordered input-sm placeholder-opacity-5 ${error && 'input-error'}`} placeholder="https://www.github.com/johndoe" value={link.link} onChange={handleChangeLink} />
             </div>
         </main>
     </div>

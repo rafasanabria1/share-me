@@ -8,19 +8,19 @@ export default async function PublicView ({ user, links, view = 'screen' }: { us
         {
             user?.avatar_url !== null
               ? <picture className='avatar ring ring-primary rounded-full mb-4'>
-                    <div className="w-64 rounded-full">
+                    <div className="w-32 rounded-full">
                         <img src={user?.avatar_url} alt={user?.user_name} />
                     </div>
               </picture>
               : <div className="avatar placeholder mb-4">
                     <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
-                    <span className="text-3xl">{user?.user_name.toUpperCase().substring(0, 1)}</span>
+                        <span className="text-3xl">{user?.user_name.toUpperCase().substring(0, 1)}</span>
                     </div>
                 </div>
         }
         {
             user?.user_name !== undefined
-              ? <h1 className="text-5xl font-bold font-mono leading-none tracking-tight text-center mb-4">{user.user_name}</h1>
+              ? <h1 className="text-2xl font-bold font-mono leading-none tracking-tight text-center mb-4">{user.user_name}</h1>
               : <div className="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
         }
         {

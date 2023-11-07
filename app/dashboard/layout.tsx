@@ -16,8 +16,8 @@ export default async function DashboardLayout ({
   const { data: links } = await supabase.from('links').select().eq('user_id', user.id).order('order', { ascending: true })
 
   return (
-    <main className="min-h-screen grid grid-cols1 md:grid-cols-2 gap-8 p-8 w-full max-w-screen-xl mx-auto">
-        <section className="hidden md:flex md:flex-col justify-center my-auto">
+    <main className="min-h-screen grid grid-cols1 lg:grid-cols-2 gap-8 p-8 w-full max-w-screen-xl mx-auto">
+        <section className="hidden lg:flex lg:flex-col justify-center my-auto">
             <h1 className='w-full text-center text-3xl font-bold mb-3'>Preview your links!</h1>
             <div className="mockup-phone shadow-lg shadow-slate-600">
                 <div className="camera"></div>

@@ -10,7 +10,7 @@ export default function SocialButton ({ href, platform, className }: { href: str
     <a href={href} className={`w-full h-full flex justify-between items-center px-6 py-4 rounded-xl ${buttonType.backgroundColorClass} ${buttonType.colorClass} ${className}`} target='_blank'>
       <div className='flex gap-2 items-center'>
         <Icon className="w-6 h-6" />
-        {buttonType.name}
+        <span className='font-bold'>{buttonType.name}</span>
       </div>
       <div>
         <IconArrowRight />

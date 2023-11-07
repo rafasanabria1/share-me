@@ -5,8 +5,8 @@ import Link from 'next/link'
 
 export default async function PublicViewServer ({ params }: { params: { code: string } }) {
   const supabase = createClientComponentClient()
-  const { data: user } = await supabase.from('users').select().eq('id', params.code).single()
-  const { data: links } = await supabase.from('links').select().eq('user_id', params.code).order('order', { ascending: true })
+  const { data: user } = await supabase.from('users').select().eq('share_hash', params.code).single()
+  const { data: links } = await supabase.from('links').select().eq('user_id', user.id).order('order', { ascending: true })
 
   return (
     <main className='h-screen flex justify-center items-center max-w-7xl mx-auto w-full relative'>

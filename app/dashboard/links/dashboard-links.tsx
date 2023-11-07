@@ -11,6 +11,7 @@ import { validateLinks } from '@utils'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
 import { useRouter } from 'next/navigation'
+import ShareMeButton from '@components/shareme-button'
 
 export default function DashBoardLinks (
   {
@@ -120,6 +121,7 @@ export default function DashBoardLinks (
                 <Link href={paths.DASHBOARD_PROFILE} className='btn btn-primary btn-circle btn-sm'>
                     <IconUser />
                 </Link>
+                <ShareMeButton userId={user.id} />
                 <SignOutButton className='btn btn-outline btn-warning btn-sm'>
                     Logout <IconLogout size={16} />
                 </SignOutButton>
@@ -133,7 +135,7 @@ export default function DashBoardLinks (
                     <span>Add new link</span>
                     <IconPlus size={20} />
                 </button>
-                <section className='flex flex-col gap-4'>
+                <section className='flex flex-col gap-4 flex-grow h-1 overflow-y-auto'>
                     {
                         modifiedLinks?.map((link, index) => {
                           return <DashboardLinkDetail key={link.id} link={link} index={index} removeLink={removeLink} updateLink={updateLink} />
