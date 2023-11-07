@@ -4,7 +4,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
 
 export default async function Dashboard () {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient<Database>({ cookies: () => cookieStore })
   const { data: { user } } = await supabase.auth.getUser()
   if (user?.id === undefined) throw new Error('User not found')
 

@@ -8,7 +8,8 @@ export default async function DashboardLayout ({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const cookieStore = cookies()
+  const supabase = createServerComponentClient<Database>({ cookies: () => cookieStore })
   const { data: { user } } = await supabase.auth.getUser()
   if (user?.id === undefined) throw new Error('User not found')
 
