@@ -1,4 +1,5 @@
-import { platforms } from '@const'
+import { useEffect, useState } from 'react'
+import { platforms, validateLinkMatcher } from '@const'
 import { IconEqual, IconTrash } from '@tabler/icons-react'
 import { type Enums, type Tables, type TablesUpdate } from '@types'
 import { type ChangeEvent } from 'react'
@@ -15,6 +16,7 @@ export default function DashboardLinkDetail (
     removeLink: (id: Tables<'links'>['id']) => void
     updateLink: (link: TablesUpdate<'links'>) => void
   }) {
+  const [error, setError] = useState(false)
   const handleChangePlatform = (e: ChangeEvent<HTMLSelectElement>) => {
     const platform = e.target.value as Enums<'platform'>
     updateLink({
@@ -30,6 +32,12 @@ export default function DashboardLinkDetail (
       link: linkValue
     })
   }
+
+  useEffect(() => {
+    if (link.link === '') return
+    if (link.link.match(validateLinkMatcher[link.platform]) === null) setError(true)
+    else setError(false)
+  }, [link.link, link.platform])
 
   return (
     <div className='flex flex-col gap-1 rounded-lg p-4 border'>
@@ -63,7 +71,7 @@ export default function DashboardLinkDetail (
                 <label className="label p-1">
                     <span className="label-text">Link</span>
                 </label>
-                <input type="text" className="input input-bordered input-sm " placeholder="https://www.github.com/johndoe" value={link.link} onChange={handleChangeLink} />
+                <input type="text" className={`input input-bordered input-sm placeholder-opacity-5 ${error && 'input-error'}`} placeholder="https://www.github.com/johndoe" value={link.link} onChange={handleChangeLink} />
             </div>
         </main>
     </div>

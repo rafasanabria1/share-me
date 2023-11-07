@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import PublicView from '@/public-view/public-view'
+import PublicView from '@/public-view/[code]/public-view'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
 

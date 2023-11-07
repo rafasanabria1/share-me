@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { type Tables, type TablesUpdate } from '@types'
-import { IconLogout, IconPlus, IconUser } from '@tabler/icons-react'
+import { IconCircleX, IconLogout, IconPlus, IconUser } from '@tabler/icons-react'
 import SignOutButton from '@components/signout-button'
-import { paths } from '@const'
+import { paths, platforms } from '@const'
 import Link from 'next/link'
 import DashboardLinkDetail from './dashboard-link-detail'
 import { validateLinks } from '@utils'
@@ -33,10 +33,15 @@ export default function DashBoardLinks (
   }, [links])
 
   const addLink = () => {
+    const firstUnusedPlatform = Object.values(platforms).find(platform => {
+      if (modifiedLinks === null) return true
+      return !modifiedLinks.map(link => link.platform).includes(platform.id)
+    })
+
     const previousLinks = modifiedLinks ?? []
     setModifiedLinks([...previousLinks, {
       id: crypto.randomUUID(),
-      platform: 'github',
+      platform: firstUnusedPlatform?.id ?? 'github',
       link: '',
       order: previousLinks.length + 1,
       user_id: user.id
@@ -77,7 +82,7 @@ export default function DashBoardLinks (
       if (modifiedLinks.length === 0) {
         await supabase.from('links').delete().eq('user_id', user.id)
       } else {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/restrict-template-expressions
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         await supabase.from('links').delete().eq('user_id', user.id).not('id', 'in', `(${modifiedLinks.map(link => link.id)})`)
         await supabase.from('links').upsert(modifiedLinks.map(link => {
           return {
@@ -102,7 +107,14 @@ export default function DashBoardLinks (
   return (
       <div className="flex flex-col w-full gap-8">
             {
-                error !== null && <div className='alert alert-danger'>{error}</div>
+                error !== null && (
+                    <div className='alert alert-error relative'>
+                        <button className='' type='button' onClick={() => { setError(null) }}>
+                            <IconCircleX size={20}/>
+                        </button>
+                        <span>{error}</span>
+                    </div>
+                )
             }
             <header className="w-full flex justify-between">
                 <Link href={paths.DASHBOARD_PROFILE} className='btn btn-primary btn-circle btn-sm'>

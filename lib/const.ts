@@ -1,5 +1,5 @@
 import { IconBrandFacebook, IconBrandGithub, IconBrandGoogle, IconBrandInstagram, IconBrandKick, IconBrandLinkedin, IconBrandTelegram, IconBrandTwitch, IconBrandX, IconBrandYoutube } from '@tabler/icons-react'
-import { type PlatformInfo, type Enums, type Tables } from '@types'
+import { type PlatformInfo, type Enums } from '@types'
 
 export const paths = {
   HOME: '/',
@@ -86,12 +86,15 @@ export const platforms: Record<Enums<'platform'>, PlatformInfo> = {
   }
 }
 
-export const exampleUser: Tables<'users'> = {
-  id: 'sasdfasdf',
-  user_name: 'johndoe',
-  full_name: 'John Doe',
-  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet.',
-  avatar_url: 'https://avatars.githubusercontent.com/u/263385',
-  created_at: new Date().toString(),
-  updated_at: new Date().toString()
+export const validateLinkMatcher: Record<Enums<'platform'>, RegExp> = {
+  google: /^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/i,
+  github: /^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9_]{1,25}$/igm,
+  facebook: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w-]*)?/,
+  x: /(https:\/\/((www|\w\w)\.)?twitter.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/,
+  instagram: /(https:\/\/((www|\w\w)\.)?instagram.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/,
+  linkedin: /((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^/]+\/(([\w|\d-&#?=])+\/?){1,}))$/,
+  twitch: /(https:\/\/((www|\w\w)\.)?twitch.tv\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/,
+  kick: /(https:\/\/((www|\w\w)\.)?kick.com\/(?![a-zA-Z0-9_]+\/)([a-zA-Z0-9_]+))/,
+  youtube: /(https?:\/\/)?(www\.)?youtube\.com\/(channel|user)\/[\w-]+/,
+  telegram: /(https?:\/\/)?(www[.])?(telegram|t)\.me\/([a-zA-Z0-9_-]*)\/?$/
 }

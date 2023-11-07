@@ -6,7 +6,7 @@ export async function middleware (req: NextRequest) {
   const res = NextResponse.next()
 
   if (req.nextUrl.pathname === paths.LOGIN_CALLBACK) return res
-  if (req.nextUrl.pathname === paths.PUBLIC_VIEW) return res
+  if (req.nextUrl.pathname.startsWith(paths.PUBLIC_VIEW)) return res
 
   const supabase = createMiddlewareClient({ req, res })
   const { data: { session } } = await supabase.auth.getSession()
