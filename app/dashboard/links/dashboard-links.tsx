@@ -121,7 +121,6 @@ export default function DashBoardLinks (
                 <Link href={paths.DASHBOARD_PROFILE} className='btn btn-primary btn-circle btn-sm'>
                     <IconUser />
                 </Link>
-                <ShareMeButton userId={user.id} />
                 <SignOutButton className='btn btn-outline btn-warning btn-sm'>
                     Logout <IconLogout size={16} />
                 </SignOutButton>
@@ -153,6 +152,7 @@ export default function DashBoardLinks (
                         </span>
                     </>
                   : 'Save'}</button>
+                <ShareMeButton className="lg:hidden text-2xl text-center py-4 w-full" userId={user.id} />
             </footer>
 
     </div>

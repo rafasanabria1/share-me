@@ -6,7 +6,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
 import { paths } from '@const'
 
-export default function ShareMeButton ({ userId, children }: { userId: Tables<'users'>['id'], children?: React.ReactNode }) {
+export default function ShareMeButton ({ userId, className, children }: { userId: Tables<'users'>['id'], className?: string, children?: React.ReactNode }) {
   if (userId === null || userId === '') throw new Error('User not found')
 
   const [generatingHash, setGeneratingHash] = useState(false)
@@ -39,10 +39,10 @@ export default function ShareMeButton ({ userId, children }: { userId: Tables<'u
   let render = null
   if (generatingHash) render = <span className='opacity-70 cursor-wait'>Generating hash...</span>
   else if (copied) render = <span className='text-secondary font-bold text-lg'>Sharing link copied to your clipboard!</span>
-  else render = <div className='link link-secondary flex items-center link-hover'><IconLink size={18}/> Share your links!</div>
+  else render = <div className='link link-secondary inline-flex items-center justify-center link-hover'><IconLink size={24}/> Copy your share-me link!</div>
 
   return (
-    <button id='share-me-button' disabled={generatingHash || copied} aria-disabled={generatingHash || copied} onClick={handleClick}>
+    <button className={className} id='share-me-button' disabled={generatingHash || copied} aria-disabled={generatingHash || copied} onClick={handleClick}>
         {render}
     </button>
   )

@@ -1,9 +1,9 @@
 import SocialButton from '@components/social-button'
 import { type Tables } from '@types'
 
-export default async function PublicView ({ user, links, view = 'screen' }: { user?: Tables<'users'> | null, links?: Array<Tables<'links'>> | null, view?: 'mobile' | 'screen' }) {
+export default async function PublicView ({ user, links, view = 'screen', className }: { user?: Tables<'users'> | null, links?: Array<Tables<'links'>> | null, view?: 'mobile' | 'screen', className?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className={`flex flex-col items-center justify-center w-full ${className}`}>
       <section className="flex flex-col items-center max-w-2xl px-2 mx-auto md:px-0">
         {
             user?.avatar_url !== null

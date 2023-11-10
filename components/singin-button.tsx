@@ -6,7 +6,7 @@ import { paths, platforms } from '@const'
 import { type Provider } from '@supabase/supabase-js'
 import { IconBrandGithub, IconBrandGoogle } from '@tabler/icons-react'
 
-export default function SignInButton ({ id, name }: { id: string, name: string }) {
+export default function SignInButton ({ id, name }: { id?: string, name: string }) {
   const router = useRouter()
   const supabase = createClientComponentClient()
   const redirectURL = new URL(paths.LOGIN_CALLBACK, process.env.NEXT_PUBLIC_BASE_URL)

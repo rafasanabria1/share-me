@@ -9,13 +9,13 @@ export default async function PublicViewServer ({ params }: { params: { code: st
   const { data: links } = await supabase.from('links').select().eq('user_id', user.id).order('order', { ascending: true })
 
   return (
-    <main className='h-screen flex justify-center items-center max-w-7xl mx-auto w-full relative'>
-        <div className='absolute right-5 top-5'>
-            <Link href={paths.LOGIN} className='btn btn-primary btn-sm'>
+    <main className='h-screen flex flex-col justify-center items-center max-w-7xl mx-auto w-full relative'>
+        <div className='py-4 lg:self-end lg:mr-4'>
+            <Link href={paths.LOGIN} className='btn btn-link lg:btn-primary btn-xs lg:btn-lg'>
                 Log in to share your own links!
             </Link>
         </div>
-        <PublicView user={user} links={links} />
+        <PublicView user={user} links={links} className='flex-grow' />
     </main>
   )
 }
