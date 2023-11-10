@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { IconLink } from '@tabler/icons-react'
 import { type Tables } from '@types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { type Database } from '@database'
@@ -39,7 +38,7 @@ export default function ShareMeButton ({ userId, className, children }: { userId
   let render = null
   if (generatingHash) render = <span className='opacity-70 cursor-wait'>Generating hash...</span>
   else if (copied) render = <span className='text-secondary font-bold text-lg'>Sharing link copied to your clipboard!</span>
-  else render = <div className='link link-secondary inline-flex items-center justify-center link-hover'><IconLink size={24}/> Copy your share-me link!</div>
+  else render = <div className='link link-secondary link-hover'>Copy your share-me link!</div>
 
   return (
     <button className={className} id='share-me-button' disabled={generatingHash || copied} aria-disabled={generatingHash || copied} onClick={handleClick}>

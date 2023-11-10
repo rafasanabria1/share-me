@@ -1,27 +1,25 @@
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { paths, platforms } from '@const'
-import { type Provider } from '@supabase/supabase-js'
+import { platforms } from '@const'
 import { IconBrandGithub, IconBrandGoogle } from '@tabler/icons-react'
 
 export default function SignInButton ({ id, name }: { id?: string, name: string }) {
   const router = useRouter()
-  const supabase = createClientComponentClient()
-  const redirectURL = new URL(paths.LOGIN_CALLBACK, process.env.NEXT_PUBLIC_BASE_URL)
 
   const handleSignIn = () => {
-    supabase.auth.signInWithOAuth({
-      provider: id as Provider,
-      options: {
-        redirectTo: redirectURL.toString()
-      }
-    }).then(() => { router.refresh() })
-      .catch(e => {
-        console.log('Error en el login')
-        console.error(e)
-      })
+    fetch(`/auth/login/${id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(async response => {
+      const { data } = await response.json()
+      return data
+    }).then(data => {
+      router.push(data.url)
+    }).catch(e => {
+      console.log('Error during loging')
+      console.error(e)
+    })
   }
 
   return (

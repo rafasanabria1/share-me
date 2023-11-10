@@ -5,6 +5,7 @@ export const paths = {
   HOME: '/',
   LOGIN: '/login',
   LOGIN_CALLBACK: '/auth/callback',
+  LOGIN_PROVIDER: '/auth/login/',
   PUBLIC_VIEW: '/public-view',
   DASHBOARD: '/dashboard',
   DASHBOARD_LINKS: '/dashboard/links',
