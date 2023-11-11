@@ -14,6 +14,10 @@ Este repositorio contiene una aplicación en la que podrás iniciar sesión con 
   9. Youtube
   10. Telegram
 
+## Sitio público
+
+Puedes ver este proyecto desplegado en [https://share-me-rs1.vercel.app/](https://share-me-rs1.vercel.app/), o puedes instalarlo y probarlo en tu entorno local siguiendo las instrucciones de instalación.
+
 ## Tecnologías utilizadas
 
 - [NextJS](https://nextjs.org/)
